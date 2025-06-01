@@ -29,6 +29,22 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
 
+    <style>
+        /* Submenu positioning */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+    display: none;
+}
+
+    </style>
+
     <body>
 
         <!-- Spinner Start -->
@@ -44,18 +60,37 @@
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
                     <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Nomadva</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.html" class="nav-item nav-link active">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="services.html" class="nav-item nav-link">Services</a>
-                        <a href="packages.html" class="nav-item nav-link">Packages</a>
+        
+                        <!-- Travel Packages with nested submenu -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Travel Packages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="destination.html" class="dropdown-item">Leisure</a>
+                                <a href="tour.html" class="dropdown-item">Adventure</a>
+        
+                                <div class="dropdown-submenu">
+                                    <a href="#" class="dropdown-item dropdown-toggle">Other Services</a>
+                                    <div class="dropdown-menu">
+                                        <a href="#" class="dropdown-item">Rail Booking</a>
+                                        <a href="#" class="dropdown-item">Air Booking</a>
+                                        <a href="#" class="dropdown-item">Visa Assistance</a>
+                                        <a href="#" class="dropdown-item">Passport Assistance</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
                         <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+        
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                             <div class="dropdown-menu m-0">
@@ -68,12 +103,14 @@
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
+        
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Contact Now</a>
                 </div>
             </nav>
         </div>
+        
         <!-- Navbar & Hero End -->
 
         <!-- Header Start -->
@@ -305,6 +342,35 @@
             </div>
         </div>
         <!-- Copyright End -->
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.dropdown-submenu > a').forEach(function (el) {
+                    el.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const submenu = el.nextElementSibling;
+            
+                        // Close all other submenus
+                        document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
+                            if (menu !== submenu) menu.style.display = 'none';
+                        });
+            
+                        // Toggle current submenu
+                        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                    });
+                });
+            
+                // Close submenus if clicked outside
+                document.addEventListener('click', function (e) {
+                    if (!e.target.closest('.dropdown-submenu')) {
+                        document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
+                            menu.style.display = 'none';
+                        });
+                    }
+                });
+            });
+            </script>
+            
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>   

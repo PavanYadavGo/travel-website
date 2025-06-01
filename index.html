@@ -29,6 +29,19 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
 
+    <style>
+        /* Custom styles to show nested dropdowns */
+        .dropdown-submenu {
+            position: relative;
+        }
+        
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+        </style>
+
     <body>
 
         <!-- Spinner Start -->
@@ -42,9 +55,8 @@
         <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
+                <a href="#" class="navbar-brand p-0">
                     <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Nomadva</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
@@ -54,7 +66,27 @@
                         <a href="index.html" class="nav-item nav-link active">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="services.html" class="nav-item nav-link">Services</a>
-                        <a href="packages.html" class="nav-item nav-link">Packages</a>
+            
+                        <!-- First Level Dropdown -->
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Leisure Holidays</a>
+    <div class="dropdown-menu m-0">
+        <a href="#" class="dropdown-item">Adventure Outings</a>
+
+        <!-- Submenu Toggle -->
+        <div class="dropdown-submenu">
+            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="submenu">Other Services</a>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Rail Booking</a>
+                <a href="#" class="dropdown-item">Air Booking</a>
+                <a href="#" class="dropdown-item">Visa Assistance</a>
+                <a href="#" class="dropdown-item">Passport Assistance</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+            
                         <a href="gallery.html" class="nav-item nav-link">Gallery</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
@@ -70,7 +102,7 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Contact Now</a>
+                    <a href="#" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Contact Now</a>
                 </div>
             </nav>
 
@@ -1761,6 +1793,33 @@
             </div>
         </div>
         <!-- Copyright End -->
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.dropdown-submenu > a').forEach(function (el) {
+                    el.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const nextMenu = el.nextElementSibling;
+                        // Close other open submenus
+                        document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
+                            if (menu !== nextMenu) menu.style.display = 'none';
+                        });
+                        // Toggle current
+                        nextMenu.style.display = nextMenu.style.display === 'block' ? 'none' : 'block';
+                    });
+                });
+            
+                // Optional: close on outside click
+                document.addEventListener('click', function (e) {
+                    if (!e.target.closest('.dropdown-submenu')) {
+                        document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
+                            menu.style.display = 'none';
+                        });
+                    }
+                });
+            });
+            </script>
+            
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
