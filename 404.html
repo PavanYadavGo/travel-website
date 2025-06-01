@@ -277,7 +277,7 @@
                         e.preventDefault();
                         const submenu = el.nextElementSibling;
             
-                        // Close all other submenus
+                        // Close other submenus
                         document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
                             if (menu !== submenu) menu.style.display = 'none';
                         });
@@ -287,7 +287,7 @@
                     });
                 });
             
-                // Close submenus if clicked outside
+                // Hide submenu when clicking outside
                 document.addEventListener('click', function (e) {
                     if (!e.target.closest('.dropdown-submenu')) {
                         document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
@@ -297,6 +297,7 @@
                 });
             });
             </script>
+            
             
 
         <!-- Back to Top -->

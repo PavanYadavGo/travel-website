@@ -1808,17 +1808,19 @@
                 document.querySelectorAll('.dropdown-submenu > a').forEach(function (el) {
                     el.addEventListener('click', function (e) {
                         e.preventDefault();
-                        const nextMenu = el.nextElementSibling;
-                        // Close other open submenus
+                        const submenu = el.nextElementSibling;
+            
+                        // Close other submenus
                         document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
-                            if (menu !== nextMenu) menu.style.display = 'none';
+                            if (menu !== submenu) menu.style.display = 'none';
                         });
-                        // Toggle current
-                        nextMenu.style.display = nextMenu.style.display === 'block' ? 'none' : 'block';
+            
+                        // Toggle current submenu
+                        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
                     });
                 });
             
-                // Optional: close on outside click
+                // Hide submenu when clicking outside
                 document.addEventListener('click', function (e) {
                     if (!e.target.closest('.dropdown-submenu')) {
                         document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
@@ -1828,6 +1830,7 @@
                 });
             });
             </script>
+            
             
 
         <!-- Back to Top -->
