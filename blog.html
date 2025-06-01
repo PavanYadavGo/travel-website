@@ -30,17 +30,23 @@
     </head>
 
     <style>
-        /* Submenu positioning */
-.dropdown-submenu {
-    position: relative;
-}
-
 .dropdown-submenu .dropdown-menu {
+    display: none !important;
     position: absolute;
     top: 0;
     left: 100%;
     margin-top: -1px;
-    display: none;
+}
+
+/* Position the submenu */
+.dropdown-submenu {
+    position: relative;
+}
+
+/* Optional: style caret icon */
+.dropdown-submenu > a::after {
+    content: " ▸";
+    float: right;
 }
 
     </style>
